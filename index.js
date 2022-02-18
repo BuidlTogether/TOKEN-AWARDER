@@ -78,8 +78,6 @@ let signer
 
 let persistentProvider = new ethers.providers.JsonRpcProvider('https://mainnet.infura.io/v3/3fd6400b02264579ad009cdc6879dcaf')
 
-let torusUserInfo
-
 const devcashABI = [
 	{
 		"inputs": [],

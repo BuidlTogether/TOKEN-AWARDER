@@ -7,18 +7,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed"></script>
     <script src="https://cdn.jsdelivr.net/npm/@toruslabs/torus-direct-web-sdk"></script>
-    <script>if ('serviceWorker' in navigator) {
-    	console.log("2")
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }</script>
+
     <meta charset="utf-8">
     <title></title>
   </head>
@@ -30,7 +19,7 @@
       color: rgba(242,241,255, 1);
       font: Manrope;
       font-weight: 400;
-  
+
       }
       label{
         color: rgba(242,241,255, 1);
@@ -60,8 +49,11 @@
   </style>
   <body background-color>
     <div id="panel">
-      <img src="logo.png">
-      <h3>Devcash Balance</h3>
+      <h1>Buidl Together Bounty Awarder</h1>
+      <h3>Select Team<h3>
+      <select id="teamSelect"></select>
+      <hr>
+      <h3>Token Balance</h3>
 
       <label id="balanceLabel">Balance: </label><br>
       <label id="approvedLabel">Approved: </label><br><br>
@@ -72,16 +64,20 @@
     <hr>
     <div id="panel">
     <h3>Award Bounty</h3>
+    <select id="teamSelect" placeholder="team..."></select> <br>
     <input id="bountyHunter" placeholder="bounty hunter..."></input> <br>
     <input id="bountyDescription" placeholder="description..."></input> <br>
     <input id="bountyAmount" placeholder="bounty amount..."></input> <br>
     <br>
 
     <button onclick = "award()">Award</button>
-    <br><br>
+    <hr>
     <table>
-      <caption>Bounties Awarded</caption>
+
+      <caption>Bounty History</caption>
       <thead>
+        <th>Team</th>
+        <th>Token</th>
         <th>Poster</th>
         <th>Hunter</th>
         <th>Amount</th>
@@ -92,7 +88,7 @@
     </table>
   </div>
     <script src="index.js"></script>
-  
+
   </body>
   <script>
     initialize(web3)
