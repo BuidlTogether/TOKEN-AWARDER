@@ -47,11 +47,19 @@
     <button onclick="login()">Metamask Login</button> <br><br>
     <label id="statusLabel">Status: NOT CONNECTED</label><br><br>
     <label id="addressLabel">Address: -</label><br><br>
-    <label id="balanceLabel">Xdai Balance: -</label>
+    <label id="balanceLabel">ONE Balance: -</label><br><br>
+
+    <label>NOTE: To connect Metamask to Harmony, visit <a href=https://chainlist.org>Chainlist.org</a> search for "harmony Mainnet Shard 0" and press Add to Metamask. </label><br><br>
+    <label>NOTE: This app uses the Harmony Blockchain. ONE is required for transaction fees. To receive ONE visit <a href = "https://discord.gg/ZPn4j8jX">our Discord</a></label>
+
     <div id="panel">
-      <img src="logo.png">
       <h1>Welcome to the ETHDenver 2022 bounty platform! </h1>
-      <h3>Devcash Balance</h3>
+
+      <h3>Select Team</h3>
+      <select id="teamSelect" placeholder="team..."></select> <br>
+
+
+      <h3>Approve Token</h3>
 
       <label id="balanceLabel">Balance: </label><br>
       <label id="approvedLabel">Approved: </label><br><br>
@@ -59,10 +67,9 @@
       <input id="approveAmount" placeholder = "amount..."></input><button onclick="approve()">Approve</button>
       <br><br>
     </div>
-    <hr>
+
     <div id="panel">
     <h3>Award Bounty</h3>
-    <select id="teamSelect" placeholder="team..."></select> <br>
     <input id="bountyHunter" placeholder="bounty hunter..."></input> <br>
     <input id="bountyDescription" placeholder="description..."></input> <br>
     <input id="bountyAmount" placeholder="bounty amount..."></input> <br>
