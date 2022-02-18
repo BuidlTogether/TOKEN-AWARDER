@@ -2,8 +2,26 @@ const awarderABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "_awards",
+		"outputs": [
+			{
 				"internalType": "address",
 				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "poster",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "hunter",
 				"type": "address"
 			},
 			{
@@ -12,9 +30,30 @@ const awarderABI = [
 				"type": "string"
 			},
 			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
 				"internalType": "address",
 				"name": "hunter",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
 			},
 			{
 				"internalType": "uint256",
@@ -26,46 +65,10 @@ const awarderABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "token",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "employer",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "hunter",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "awarded",
-		"type": "event"
 	}
 ]
-const awarderAddress = "0x93A91EF833714eB0B4A7591eDf94D34B5E692836"
+
+const awarderAddress = "0x91Eaf99A79073b064533be3279640b119a2e943C"
 let Awarder
 let provider
 let signer
@@ -128,40 +131,8 @@ async function award(){
 }
 
 async function getAwarded() {
-	console.log("get Event Logs")
-	let topic = ethers.utils.id("awarded(address,address,string,uint256)");
-	let filter = {
-    address: awarderAddress,
-    fromBlock: 11330000,
-    toBlock: 99999999,
-    topics: [ topic ]
-	}
 
-	let result = await persistentProvider.getLogs(filter)	//get event logs of all instances of bounties awarded
-	eventLogs = new Array()
-	for (n=0;n<result.length;n++){
-		let log = new Object()
-		let data = result[n].data
-		data = data.substring(2)
-		data = data.match(/.{1,64}/g) //divide data from event log into 64 length sections
-		for (j=0;j<6;j++){
-			data[j] = "0x" + data[j]
-		}
-		let descriptionData = ""
-		for (j=5;j<data.length;j++){
-			descriptionData += data[j]
-		}
-		let poster = "0x" + data[0].substring(26)
-		let hunter = "0x" + data[1].substring(26)
-		let amount = ethers.utils.formatUnits(ethers.utils.bigNumberify(data[3]),8)
-		let description = web3.toAscii(descriptionData)
-		log.poster = poster
-		log.hunter = hunter
-		log.amount = amount
-		log.description = description
-		log.txHash = result[n].transactionHash
-		eventLogs.push(log)
-	}
+
 }
 
 async function populateAwarded() {
