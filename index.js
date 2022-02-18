@@ -400,6 +400,10 @@ let symbol
 
 let eventLogs
 
+async function login() {
+
+}
+
 async function initialize(web3) {
 	let devcashPersistent = new ethers.Contract(devcashAddress,devcashABI,persistentProvider)
 	decimals = await devcashPersistent.decimals()
