@@ -31,4 +31,8 @@ contract awarder{
 
     _award[] public _awards;
 
+    function numAwards() public view returns(uint){
+        return _awards.length;
+    }
+
 }

@@ -825,12 +825,23 @@ async function login() {
 
 		signer = provider.getSigner(accounts[0]);
 
+		document.getElementById("addressLabel").innerHTML = "Address: " + accounts[0]
+
+
+		await updateEverything()
+}
+
+async function updateEverything() {
 	let balance = await signer.getBalance()
 	let formattedBalance = await ethers.utils.formatEther(balance)
 	document.getElementById("statusLabel").innerHTML = "STATUS: CONNECTED"
-	document.getElementById("addressLabel").innerHTML = "Address: " + accounts[0]
 	document.getElementById("balanceLabel").innerHTML = "Balance: " + formattedBalance + " ONE"
 
+	let BATable = document.getElementById("BATable")
+	while(BATable.hasChildNodes())
+	{
+	   BATable.removeChild(BATable.firstChild);
+	}	document.getElementById("teamSelect").innerHTML=""
 	Awarder = new _ethers.Contract(awarderAddress, awarderABI, signer);
 	TLContract = new _ethers.Contract(TLContractAddress, TLContractABI, signer)
   TokenList = await getTokenDetails(TLContract, signer)
@@ -842,6 +853,11 @@ async function login() {
 	console.log("pass3")
 	await getAwarded()
 	await populateAwarded()
+}
+
+async function selectChange() {
+	await getBalance()
+	await getAwarded()
 }
 
 

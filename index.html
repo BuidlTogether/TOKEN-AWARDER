@@ -8,44 +8,15 @@
     </script>
   </head>
   <style>
-    body {
-      background-color:  #FC5090
-      }
-      h3 {
-      color: rgba(242,241,255, 1);
+
+
+      h1,h3{
+      color: rgba(252, 80, 144, 1);
       font: Manrope;
-      font-weight: 400;
+      font-weight: bold;
+
       }
-      h1 {
-      color: rgba(242,241,255, 1);
-      font: Manrope;
-      font-weight: 400;
-      }
-      label{
-        color: rgba(242,241,255, 1);
-      }
-      input{
-        background-color:  rgb(255, 255, 255);
-        color:rgba(242,241,255, 1);
-        border: 1px solid gray;
-        height: 25px;
-      }
-      img{
-        height: 100px;
-      }
-      #panel{
-        background-color:  #FC5090;
-      }
-      table, th, td {
-        border: 1px solid rgb(255, 255, 255);
-        color:rgb(255, 255, 255);
-      }
-      button{
-        background-color:  rgba(255,255,255, 1);
-        border-radius:4px;
-        border:1px rgba(103,92,255, 1);
-        height: 25px;
-      }
+
   </style>
   <body background-color>
     <h1>Account</h1>
@@ -61,7 +32,7 @@
       <h1>Welcome to the ETHDenver 2022 bounty platform! 👋 </h1>
 
       <h3>Select Team</h3>
-      <select id="teamSelect" placeholder="team..."></select> <br>
+      <select id="teamSelect" onchange="selectChange()" placeholder="team..."></select> <br>
 
       <h3>Approve Token</h3>
 
